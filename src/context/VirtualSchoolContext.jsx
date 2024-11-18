@@ -7,20 +7,23 @@ const VirtualSchoolContext = createContext();
 
 export const VirtualSchoolProvider = ({ children }) => {
   const [module, setModule] = useState("");
+  const [view, setView] = useState("grid");
   const [allUser, setAllUser] = useState([])
   const [allPosts, setAllPosts] = useState([])
   const [allCourses, setAllCourses] = useState([])
   const [allVideos, setAllVideos] = useState([])
-  const [allFreeCourses, setAllFreeCourses] = useState([])
+  const [allContain, setAllContain] = useState([])
   const [data, setData] = useState()
   const [modal, setModal] = useState(false)
   const [loading, setLoading] = useState(false)
+
   const path = {
     users: "/users",
     posts: "/post",
     courses: "/courses",
     videos: "/videos",
     free: "/courses/free",
+    my_courses: "/courses/my_courses",
   };
 
   useEffect(() => {
@@ -37,7 +40,10 @@ export const VirtualSchoolProvider = ({ children }) => {
       getAllVideos()
     }
     if (module === "free") {
-      getFreeContain()
+      getContain()
+    }
+    if (module === "my_courses") {
+      getContain()
     }
   }, [module])
 
@@ -132,16 +138,20 @@ export const VirtualSchoolProvider = ({ children }) => {
     }
   }
 
-  const getFreeContain = async() => {
+  const getContain = async() => {
     setLoading(true)
     await axiosInstance.get(path[module])
-    .then(res => setAllFreeCourses(res.data))
+    .then(res => setAllContain(res.data))
     .finally(() => setLoading(false))
   }
 
   const getCourseVideo = async(courseId) => {    
     return await axiosInstance.get(`${path.videos}${courseId && "?courseId="+courseId}`)
   }
+
+  const handleViewChange = (event, newView) => {
+    if (newView) setView(newView);
+  };
 
   const functions = {
     setModule,
@@ -159,9 +169,11 @@ export const VirtualSchoolProvider = ({ children }) => {
     createCourse,
     createVideo,
     allVideos,
-    allFreeCourses,
+    allContain,
     data,
-    getCourseVideo
+    getCourseVideo,
+    view, setView,
+    handleViewChange
   };
 
   return (
