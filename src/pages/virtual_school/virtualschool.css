@@ -1,0 +1,57 @@
+.virtual_school_container{
+  margin-top: 4rem;
+  background-color: var(--secondaryCC);
+  min-height: calc(100vh - 4rem);
+}
+
+.admin_container{
+  border-radius: 15px;
+  color: var(--secondaryTC);
+  overflow: hidden;
+}
+
+.appBar {
+  left: 0;
+  right: 0;
+  background-color: var(--primaryCC);
+  overflow-x: hidden;
+  color: var(--secondaryCC);
+  margin-bottom: 2rem;
+}
+
+/* Estilos del toolbar */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Estilos para los botones */
+.button {
+  color: white;
+  text-transform: none;
+}
+
+.MuiTableCell-head{
+  font-weight: bold !important;
+  text-align: center !important;
+}
+
+.tabpanel{
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  max-width: 1000px;
+}
+
+.modal_container{
+  background-color: rgb(206, 232, 236);
+  border-radius: 8px;
+  color: var(--secondaryTC);
+  padding: 1.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .virtual_school_container{
+    margin-top: 6rem;
+    min-height: calc(100vh - 6rem);
+  }
+}
