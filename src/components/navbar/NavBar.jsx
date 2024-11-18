@@ -17,9 +17,9 @@ const NavBar = () => {
   
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const handdleActionsIconUser = () => {
+  const handdleActionsIconUser = (string) => {
     if (token) {
-      navigate("/virtual_school/profile")
+      navigate(`/virtual_school/${string}`)
     } else {
       setOpenModalLogin(true)
     }
@@ -33,7 +33,7 @@ const NavBar = () => {
       <div className="navbar_menu_container al-c">
         <Menu />
         <TokenAnimate>
-          <PrimaryBtn link={"virtual_school/my_courses"}>ESCUELA VIRTUAL</PrimaryBtn>
+          <PrimaryBtn btnAction={() => handdleActionsIconUser("my_courses")}>ESCUELA VIRTUAL</PrimaryBtn>
         </TokenAnimate>
       </div>
       <div className="navbar_icon_container flex row jf-sb al-c">
@@ -49,7 +49,7 @@ const NavBar = () => {
         ))}
         <i
           className={`bx bx-user flex jf-c al-c btn_app ${token && "user_loged"}`}
-          onClick={handdleActionsIconUser}
+          onClick={() => handdleActionsIconUser("profile")}
         />
       </div>
       <div className="menu_access" onClick={() => setMenuOpen(!menuOpen)}>
