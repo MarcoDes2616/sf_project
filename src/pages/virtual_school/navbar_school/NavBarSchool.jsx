@@ -14,11 +14,9 @@ export default function NavBarSchool() {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm')); // Detecta si es mobile
 
   useEffect(() => {
-    // Comprobar roleId en localStorage
     const roleId = localStorage.getItem('roleId');
-    setIsAdmin(roleId === '1');
+    setIsAdmin(roleId === "1");
 
-    // Actualizar la pestaña seleccionada según la ruta actual
     switch (location.pathname) {
       case '/virtual_school/my_courses':
         setSelectedTab(0);
@@ -33,13 +31,12 @@ export default function NavBarSchool() {
         setSelectedTab(3);
         break;
       default:
-        setSelectedTab(0);
+        setSelectedTab(10)
+        break
     }
   }, [location.pathname]);
 
-  // Función para manejar la navegación y cambiar la pestaña activa
   const handleTabChange = (event, newValue) => {
-    setSelectedTab(newValue);
     switch (newValue) {
       case 0:
         navigate('/virtual_school/my_courses');
@@ -54,7 +51,7 @@ export default function NavBarSchool() {
         navigate('/virtual_school/admin');
         break;
       default:
-        navigate('/virtual_school/my_courses');
+        break
     }
   };
 
@@ -68,12 +65,10 @@ export default function NavBarSchool() {
           textColor="inherit"
           variant='scrollable'
         >
-          {/* Pestañas que cambian entre iconos o texto según sea escritorio o móvil */}
           <Tab icon={ <School />} label={isMobile ? '' : 'MIS CURSOS'} />
           <Tab icon={ <Public />} label={isMobile ? '' : 'CONTENIDO PUBLICO'} />
           <Tab icon={ <Person />} label={isMobile ? '' : 'PERFIL'} />
 
-          {/* Pestaña de administración solo para roleId 1 */}
           {isAdmin && (
             <Tab
               icon={ <AdminPanelSettings /> }
