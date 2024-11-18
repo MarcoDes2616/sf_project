@@ -1,5 +1,5 @@
 .blog_container{
-    background: url("/public/bg_tre5M.png")  var(--secondaryCC);
+    background: url("/bg_tre5M.png")  var(--secondaryCC);
     background-repeat: no-repeat;
     background-position: 100% 100%;
     background-size: contain;

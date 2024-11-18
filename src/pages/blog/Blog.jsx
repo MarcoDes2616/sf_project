@@ -1,10 +1,9 @@
-import { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./blog.css";
+import MainContext from "../../context/MainContext";
+import { useNavigate } from "react-router-dom";
 import FilterComponent from "./utils/FilterComponent";
 import PostCard from "./utils/PostCard";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import MainContext from "../../context/MainContext";
 
 const Blog = () => {
   const [tagId, setTagId] = useState("");

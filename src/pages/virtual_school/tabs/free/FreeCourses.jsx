@@ -10,7 +10,6 @@ function FreeCourses() {
   useEffect(() => {
     setModule("free")
   }, [])
-  console.log(allFreeCourses);
   
   return (
     <div>
