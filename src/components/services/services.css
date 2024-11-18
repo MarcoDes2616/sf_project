@@ -1,0 +1,77 @@
+.services_container{
+    background-image: url("/bg_tre4M.png");
+    min-height: 95vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 100% 100%;
+    padding: 1rem 0;
+}
+
+.services_section1{
+    width: 80%;
+    max-width: 450px;
+}
+
+.services_section2{
+    width: 80%;
+    max-width: 800px;
+    gap: 1.5rem;
+}
+
+.services_section2 div{
+    width:100%;
+    max-width: 360px;
+    height: 200px;
+    padding: 1rem;
+    border-radius: 30px;
+    gap: .5rem;
+}
+
+.services_section2 h3{
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+}
+
+.services_section2 span{
+    color: var(--primaryTC);
+    width: 100%;
+    text-align: center;
+}
+
+.services_item1{
+    border: 3px solid var(--primaryC);
+    color: var(--primaryC);
+}
+.services_item2{
+    border: 3px solid var(--secondaryHC);
+    color: var(--secondaryHC);
+}
+.services_item3{
+    border: 3px solid #ffffa7;
+    color: #ffffa7;
+}
+.services_item4{
+    border: 3px solid var(--primaryHC);
+    color: var(--primaryHC);
+}
+
+.services_section2 div img{
+    width: 30%;
+    height: 70px;
+    max-width: 100px;
+}
+
+.services_section1 img{
+    width: 85%;
+}
+
+@media screen and (min-width: 768px) {
+    .services_container{
+        background-image: url("/bg_tre4.jpg");
+    }
+    .services_section2 h3{
+        font-size: 35px;
+        margin-bottom: 1rem;
+    }
+}

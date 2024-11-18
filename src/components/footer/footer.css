@@ -1,0 +1,69 @@
+.footer_container{
+    background-image: url("/bg_tre7M.png");
+    min-height: 60vh;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50% 10%;
+    padding: 1rem 0;
+    color: var(--primaryCC);
+}
+
+.footer_second_section{
+    gap: 1rem;
+}
+
+.footer_menu_items{
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    justify-content: center;
+}
+
+.footer_last_section{
+    height: 5rem;
+    width: 100%;
+}
+
+.to_top_btn{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primaryCC);
+    border: none;
+    color: var(--primaryTC);
+    font-size: 1.5rem;
+    top: -25px
+}
+
+.footer_link a{
+    text-decoration: none;
+    margin-top: 1rem;
+    color: var(--primaryC);
+}
+
+.footer_link .navbar_icon_container{
+    width: 100%;
+    max-width: 180px;
+    border: none;
+}
+
+.footer_info{
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+@media screen and (min-width: 768px) {
+    .footer_container{
+        background-image: url("/bg_tre7.jpg");
+    }
+
+    .footer_menu_items{
+        flex-direction: column;
+        justify-content: start;
+    }
+
+    .footer_info{
+        gap: 7rem;
+        padding: 0;
+    }
+}

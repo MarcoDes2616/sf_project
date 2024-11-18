@@ -1,0 +1,127 @@
+.proposal_container {
+  background-image: url("/bg_tre5.jpg");
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 0;
+  padding: 1rem 0;
+}
+
+.text_proposal span{
+    color: var(--primaryTC);
+}
+
+.proposal_info{
+    max-width: var(--maxW);
+    flex-direction: column-reverse;
+}
+
+.proposal_section1{
+    width: 95%;
+    max-width: 840px;
+    gap: 2rem;
+}
+
+.proposal_price{
+    width: 280px;
+    gap: 1rem;
+    padding: .5rem;
+}
+
+.proposal_price h3{
+    font-size: 30px;
+    margin-top: -5px;
+    color: var(--secondaryHC);
+}
+
+.proposal_description1, .proposal_description2{
+    width: 100% !important;
+}
+
+
+.proposal_description1 span{
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.proposal_description1 h2{
+    color: var(--secondaryCC);
+}
+
+.proposal_description2{
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0 2rem;
+}
+
+.proposal_section2{
+    width: 95%;
+    max-width: 350px;
+}
+
+.proposal_section2 img{
+    max-width: 60%;
+    max-height: 40vh;
+}
+
+.proposal_description3 p{
+    margin-bottom: 1rem;
+    color: var(--secondaryHC);
+}
+
+.proposal_description3 div{
+    gap: 2rem;
+}
+
+.subcription_section1{
+    max-width: 500px;
+}
+.subcription_section2{
+    max-width: 320px;
+    padding-left: .5rem;
+}
+
+.subcription_section1 li{
+    list-style: circle;
+    margin-left: 2rem;
+    margin-top: .5rem;
+}
+
+.subcription_section2 li{
+    list-style: decimal-leading-zero;
+    margin-left: 2rem;
+    margin-top: .5rem;
+}
+
+
+
+
+@media screen and (min-width: 768px) {
+    .proposal_info{
+        flex-direction: row;
+    }
+    .proposal_description1 span{
+        font-size: 45px;
+    }
+    .proposal_description2{
+        gap: 2rem;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .proposal_price h3{
+        font-size: 40px;
+    }
+    .proposal_description1, .proposal_description2{
+        width: 80%;
+    }
+
+    .subcription_section2{
+        border-left: 3px solid var(--secondaryHC);
+    }
+
+    .proposal_description3 div{
+        gap: 0;
+    }
+}
