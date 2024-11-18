@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import TokenAnimate from "../generals/TokenAnimate";
 
 const NavBar = () => {
-  const { icons, menuOptions, setOpenModalLogin, openModalLogin } =
+  const { icons, menuOptions, setOpenModalLogin } =
     useContext(MainContext);
   const token = localStorage.getItem("token")
   const navigate = useNavigate()

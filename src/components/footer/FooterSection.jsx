@@ -4,9 +4,23 @@ import logoV from "/logo.png";
 import MainContext from "../../context/MainContext";
 import PrimaryBtn from "../generals/PrimaryBtn";
 import MenuItem from "../generals/MenuItem";
+import TokenAnimate from "../generals/TokenAnimate";
+import { useNavigate } from "react-router-dom";
 
 const FooterSection = () => {
-  const { handleScrollToTop, menuOptions, icons } = useContext(MainContext);
+  const { handleScrollToTop, menuOptions, icons, setOpenModalLogin} = useContext(MainContext);
+  const navigate = useNavigate()
+  const token = localStorage.getItem("token")
+
+  const handdleActionsIconUser = () => {
+    console.log("ejecutado");
+    
+    if (token) {
+      navigate(`/virtual_school/my_courses`)
+    } else {
+      setOpenModalLogin(true)
+    }
+  }
 
   return (
     <>
@@ -22,7 +36,9 @@ const FooterSection = () => {
               ))}
             </div>
             <div className="flex row jf-c">
-              <PrimaryBtn>ESCUELA VIRTUAL</PrimaryBtn>
+              <TokenAnimate>
+                <PrimaryBtn btnAction={() => handdleActionsIconUser()}>ESCUELA VIRTUAL</PrimaryBtn>
+              </TokenAnimate>
             </div>
           </div>
           <div className="footer_link">
