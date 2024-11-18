@@ -2,7 +2,7 @@ import React from 'react';
 
 const PostCard = (post) => {
     const {id, title, description, imageUrl, tag, user, createdAt} = post
-    const date = new Date(createdAt).toLocaleString
+    const date = new Date(createdAt).toLocaleString();
     const summary = description.slice(0, 50) + "..."
     return (
         <div className="post_card">
