@@ -5,17 +5,20 @@ import VirtualSchoolContext from "../../../context/VirtualSchoolContext";
 
 const CreateCourse = ({ open, onClose, onSubmit, selected }) => {
   const { updateContain } = useContext(VirtualSchoolContext);
-  const [formData, setFormData] = useState({
+  const initialValues = {
     title: "",
     description: "",
     file: null,
     price: 0,
     discount: 0,
-  });
+  }
+  const [formData, setFormData] = useState(initialValues);
 
   useEffect(() => {
     if (open && selected != "") {
       setFormData({ ...selected });
+    } else {
+      setFormData(initialValues)
     }
   }, [open]);
 

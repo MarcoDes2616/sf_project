@@ -5,22 +5,25 @@ import "./modals.css"
 
 const CreateVideo = ({ open, onClose, onSubmit, selected }) => {
   const { getAllCourses, allCourses, updateContain } = useContext(VirtualSchoolContext);
-  const [formData, setFormData] = useState({
+  const initialValues = {
     videoUrl: "",
     duration: 0,
     courseId: null,
     file: null,
     title: "",
-  });
+  }
+  const [formData, setFormData] = useState(initialValues);
 
   useEffect(() => {
     getAllCourses({ flag: true });
   }, []);
   
   useEffect(() => {
-    if(open && selected != {}){
+    if(open && selected != ""){
       const {imageUrl, ...restOfData} = selected
       setFormData({...formData,...restOfData})
+    } else {
+      setFormData(initialValues)
     }
   }, [open])
 

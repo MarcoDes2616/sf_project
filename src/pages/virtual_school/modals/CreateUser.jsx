@@ -5,7 +5,7 @@ import VirtualSchoolContext from "../../../context/VirtualSchoolContext";
 
 const CreateUser = ({ open, onClose, onSubmit, selected }) => {
   const { updateContain } = useContext(VirtualSchoolContext);
-  const [formData, setFormData] = useState({
+  const initialValues = {
     name: "",
     lastname: "",
     birthday: "",
@@ -15,7 +15,8 @@ const CreateUser = ({ open, onClose, onSubmit, selected }) => {
     signDeclare: false,
     status: true,
     roleId: "",
-  });
+  }
+  const [formData, setFormData] = useState(initialValues);
 
   useEffect(() => {
     if (open && selected != "") {
@@ -25,6 +26,8 @@ const CreateUser = ({ open, onClose, onSubmit, selected }) => {
           ? new Date(selected.birthday).toISOString().split("T")[0]
           : "",
       });
+    } else {
+      setFormData(initialValues)
     }
   }, [open]);
 

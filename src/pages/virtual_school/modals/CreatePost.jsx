@@ -5,15 +5,16 @@ import "./modals.css"
 
 const CreatePost = ({ open, onClose, onSubmit, selected }) => {
   const {updateContain} = useContext(VirtualSchoolContext)
-  const [formData, setFormData] = useState({
+  const initialValues = {
     file: null,
     title: "",
     description: "",
     tagId: "",
-  });
+  }
+  const [formData, setFormData] = useState(initialValues);
   
   useEffect(() => {
-    if(open && selected != {}){
+    if(open && selected != ""){
       let data = {
         title: selected.title,
         description: selected.description,
@@ -21,6 +22,8 @@ const CreatePost = ({ open, onClose, onSubmit, selected }) => {
         file: null
       }
       setFormData(data)
+    } else {
+      setFormData(initialValues)
     }
   }, [open])
   
