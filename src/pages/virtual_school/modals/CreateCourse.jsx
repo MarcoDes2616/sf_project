@@ -17,7 +17,7 @@ const CreateCourse = ({ open, onClose, onSubmit, selected }) => {
     if(selected != {}){
       setFormData({...selected})
     }
-  }, [])
+  }, [open])
 
   const handleInputChange = (e) => {
     const { name, value, files } = e.target;
@@ -54,7 +54,6 @@ const CreateCourse = ({ open, onClose, onSubmit, selected }) => {
           </button>
         </div>
         <form onSubmit={handleSubmit} className="form_container">
-          {/* Título */}
           <div className="form_group">
             <label htmlFor="title" className="form_label">Título</label>
             <input
@@ -67,7 +66,6 @@ const CreateCourse = ({ open, onClose, onSubmit, selected }) => {
               required
             />
           </div>
-          {/* Descripción */}
           <div className="form_group">
             <label htmlFor="description" className="form_label">Descripción</label>
             <textarea
@@ -80,7 +78,6 @@ const CreateCourse = ({ open, onClose, onSubmit, selected }) => {
               required
             />
           </div>
-          {/* Imagen */}
           <div className="form_group">
             <label htmlFor="file" className="form_label">Imagen</label>
             <input
@@ -93,7 +90,9 @@ const CreateCourse = ({ open, onClose, onSubmit, selected }) => {
               required={!selected}
             />
           </div>
-          {/* Precio */}
+          {selected != "" && (
+            <a href={selected.imageUrl}>Ver imagen actual</a>
+          )}
           <div className="form_group">
             <label htmlFor="price" className="form_label">Precio</label>
             <input

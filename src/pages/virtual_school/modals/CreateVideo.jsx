@@ -16,12 +16,11 @@ const CreateVideo = ({ open, onClose, onSubmit, selected }) => {
   useEffect(() => {
     getAllCourses({ flag: true });
   }, []);
-  console.log(selected);
   
   useEffect(() => {
     if(selected != {}){
       const {imageUrl, ...restOfData} = selected
-      setFormData({...restOfData})
+      setFormData({...formData,...restOfData})
     }
   }, [open])
 

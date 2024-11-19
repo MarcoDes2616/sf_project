@@ -13,8 +13,6 @@ const FooterSection = () => {
   const token = localStorage.getItem("token")
 
   const handdleActionsIconUser = () => {
-    console.log("ejecutado");
-    
     if (token) {
       navigate(`/virtual_school/my_courses`)
     } else {
