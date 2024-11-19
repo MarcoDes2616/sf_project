@@ -1,100 +1,71 @@
 import React, { useEffect, useContext } from "react";
 import TabPanel from "../../../utils/TabPanel";
 import VirtualSchoolContext from "../../../../../context/VirtualSchoolContext";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  IconButton,
-} from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
+import GenericTable from "../../../../../components/generals/GenericTable";
 
 const Videos = ({ value, index }) => {
-  const { allVideos, setModule, deleteContain, setSelected, setModal } = useContext(VirtualSchoolContext);
+  const { allVideos, setModule, deleteContain, setSelected, setModal } =
+    useContext(VirtualSchoolContext);
 
   useEffect(() => {
     setModule("videos");
   }, []);
 
   const handleEdit = (data) => {
-    setSelected(data)
-    setModal(true)
+    setSelected(data);
+    setModal(true);
   };
 
   const handleDelete = (id) => {
-    deleteContain(id)
+    deleteContain(id);
+  };
+
+  const columns = [
+    { field: "id", headerName: "ID" },
+    { field: "title", headerName: "TÍTULO" },
+    {
+      field: "videoUrl",
+      headerName: "URL DEL VIDEO",
+      dataRender: (value) => (
+        <a href={value} target="_blank" rel="noopener noreferrer">
+          Ver Video
+        </a>
+      ),
+    },
+    {
+      field: "duration",
+      headerName: "DURACIÓN",
+      dataRender: (value) => `${value} horas`,
+    },
+    {
+      field: "imageUrl",
+      headerName: "IMAGEN",
+      dataRender: (value) => (
+        <img
+          src={value}
+          alt="Imagen"
+          style={{ width: "80px", height: "auto" }}
+        />
+      ),
+    },
+    { field: "courseId", headerName: "CURSO" },
+    {
+      field: "status",
+      headerName: "ESTADO",
+      dataRender: (value) => (value ? "Activo" : "Inactivo"),
+    },
+  ];
+
+  const propsToTable = {
+    data: allVideos,
+    columns,
+    handleDelete,
+    handleEdit,
   };
 
   return (
     <TabPanel value={value} index={index}>
-      <TableContainer component={Paper}>
-        <Table aria-label="Videos Table">
-          <TableHead>
-            <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell>Título</TableCell>
-              <TableCell>URL del Video</TableCell>
-              <TableCell>Duración</TableCell>
-              <TableCell>Imagen</TableCell>
-              <TableCell>Curso</TableCell>
-              <TableCell>Estado</TableCell>
-              <TableCell>Acciones</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {allVideos && allVideos.length > 0 ? (
-              allVideos.map((video) => (
-                <TableRow key={video.id}>
-                  <TableCell>{video.id}</TableCell>
-                  <TableCell>{video.title}</TableCell>
-                  <TableCell>
-                    <a href={video.videoUrl} target="_blank" rel="noopener noreferrer">
-                      Ver Video
-                    </a>
-                  </TableCell>
-                  <TableCell>{video.duration} min</TableCell>
-                  <TableCell>
-                    <img
-                      src={video.imageUrl}
-                      alt={video.title}
-                      style={{ width: "80px", height: "auto" }}
-                    />
-                  </TableCell>
-                  <TableCell>{video.courseId}</TableCell>
-                  <TableCell>{video.status ? "Activo" : "Inactivo"}</TableCell>
-                  <TableCell>
-                    <IconButton
-                      color="primary"
-                      onClick={() => handleEdit(video)}
-                      aria-label="edit"
-                    >
-                      <EditIcon />
-                    </IconButton>
-                    <IconButton
-                      color="secondary"
-                      onClick={() => handleDelete(video.id)}
-                      aria-label="delete"
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell colSpan={8} align="center">
-                  No hay videos disponibles.
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <GenericTable {...propsToTable} />
     </TabPanel>
   );
 };
