@@ -18,7 +18,7 @@ const CreateVideo = ({ open, onClose, onSubmit, selected }) => {
   }, []);
   
   useEffect(() => {
-    if(selected != {}){
+    if(open && selected != {}){
       const {imageUrl, ...restOfData} = selected
       setFormData({...formData,...restOfData})
     }
@@ -132,7 +132,7 @@ const CreateVideo = ({ open, onClose, onSubmit, selected }) => {
 
           <div className="form_actions">
             <button type="submit" className="btn_submit">
-              Crear Video
+              {selected ? "Actualizar Video" : "Crear Video"}
             </button>
           </div>
         </form>

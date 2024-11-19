@@ -13,7 +13,7 @@ const CreatePost = ({ open, onClose, onSubmit, selected }) => {
   });
   
   useEffect(() => {
-    if(selected != ""){
+    if(open && selected != {}){
       let data = {
         title: selected.title,
         description: selected.description,
@@ -120,7 +120,7 @@ const CreatePost = ({ open, onClose, onSubmit, selected }) => {
 
           <div className="form_actions">
             <button type="submit" className="btn_submit">
-              Crear Publicación
+              {selected ? "Actualizar Post" : "Crear Post"}
             </button>
           </div>
         </form>

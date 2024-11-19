@@ -7,6 +7,7 @@ import FloatingBtn from "../../utils/FloatingBtn";
 import Loading from "../../../../components/Loading";
 import CreateCourse from "../../modals/CreateCourse";
 import CreateVideo from "../../modals/CreateVideo";
+import CreateUser from "../../modals/CreateUser";
 
 const Admin = () => {
   const {
@@ -18,7 +19,8 @@ const Admin = () => {
     createCourse,
     createVideo,
     selected,
-    setSelected
+    setSelected,
+    createUser
   } = useContext(VirtualSchoolContext);
 
   const toggleModal = () => {
@@ -56,6 +58,15 @@ const Admin = () => {
           open={modal}
           onClose={toggleModal}
           onSubmit={createVideo}
+          selected={selected}
+          setSelected={setSelected}
+        />
+      )}
+      {module == "users" && (
+        <CreateUser
+          open={modal}
+          onClose={toggleModal}
+          onSubmit={createUser}
           selected={selected}
           setSelected={setSelected}
         />

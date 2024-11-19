@@ -4,7 +4,7 @@ import Curtain from "../../../components/generals/Curtain";
 import VirtualSchoolContext from "../../../context/VirtualSchoolContext";
 
 const CreateCourse = ({ open, onClose, onSubmit, selected }) => {
-  const {updateContain} = useContext(VirtualSchoolContext)
+  const { updateContain } = useContext(VirtualSchoolContext);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -14,10 +14,10 @@ const CreateCourse = ({ open, onClose, onSubmit, selected }) => {
   });
 
   useEffect(() => {
-    if(selected != {}){
-      setFormData({...selected})
+    if (open && selected != "") {
+      setFormData({ ...selected });
     }
-  }, [open])
+  }, [open]);
 
   const handleInputChange = (e) => {
     const { name, value, files } = e.target;
@@ -47,7 +47,7 @@ const CreateCourse = ({ open, onClose, onSubmit, selected }) => {
   return (
     <Curtain open={open}>
       <div className="modal_container">
-      <div className="flex row jf-sb full-w">
+        <div className="flex row jf-sb full-w">
           <p className="x-big full-w bold">Crear Curso</p>
           <button className="btn_close" onClick={onClose}>
             &times;
@@ -55,7 +55,9 @@ const CreateCourse = ({ open, onClose, onSubmit, selected }) => {
         </div>
         <form onSubmit={handleSubmit} className="form_container">
           <div className="form_group">
-            <label htmlFor="title" className="form_label">Título</label>
+            <label htmlFor="title" className="form_label">
+              Título
+            </label>
             <input
               type="text"
               id="title"
@@ -67,7 +69,9 @@ const CreateCourse = ({ open, onClose, onSubmit, selected }) => {
             />
           </div>
           <div className="form_group">
-            <label htmlFor="description" className="form_label">Descripción</label>
+            <label htmlFor="description" className="form_label">
+              Descripción
+            </label>
             <textarea
               id="description"
               name="description"
@@ -79,7 +83,9 @@ const CreateCourse = ({ open, onClose, onSubmit, selected }) => {
             />
           </div>
           <div className="form_group">
-            <label htmlFor="file" className="form_label">Imagen</label>
+            <label htmlFor="file" className="form_label">
+              Imagen
+            </label>
             <input
               type="file"
               id="file"
@@ -90,11 +96,11 @@ const CreateCourse = ({ open, onClose, onSubmit, selected }) => {
               required={!selected}
             />
           </div>
-          {selected != "" && (
-            <a href={selected.imageUrl}>Ver imagen actual</a>
-          )}
+          {selected != "" && <a href={selected.imageUrl}>Ver imagen actual</a>}
           <div className="form_group">
-            <label htmlFor="price" className="form_label">Precio</label>
+            <label htmlFor="price" className="form_label">
+              Precio
+            </label>
             <input
               type="number"
               id="price"
@@ -107,7 +113,9 @@ const CreateCourse = ({ open, onClose, onSubmit, selected }) => {
           </div>
           {/* Descuento */}
           <div className="form_group">
-            <label htmlFor="discount" className="form_label">Descuento (%)</label>
+            <label htmlFor="discount" className="form_label">
+              Descuento (%)
+            </label>
             <input
               type="number"
               id="discount"
@@ -120,7 +128,7 @@ const CreateCourse = ({ open, onClose, onSubmit, selected }) => {
           {/* Botón de Enviar */}
           <div className="form_actions">
             <button type="submit" className="btn_submit">
-              Crear Curso
+              {selected ? "Actualizar Curso" : "Crear Curso"}
             </button>
           </div>
         </form>
@@ -130,4 +138,3 @@ const CreateCourse = ({ open, onClose, onSubmit, selected }) => {
 };
 
 export default CreateCourse;
-

@@ -100,6 +100,27 @@ export const VirtualSchoolProvider = ({ children }) => {
     }
   }
 
+  const createUser = async(data) => {
+    try {
+      await axiosInstance.post(path.post, data)
+      Swal.fire({
+        title: "Usuario creado correctamente",
+        icon: "success",
+        confirmButtonColor: "#F89C2A",
+        toast: true,
+      })
+    } catch (error) {
+      Swal.fire({
+        title: "Error al crear un Usuario",
+        icon: "error",
+        confirmButtonColor: "#F89C2A",
+        toast: true,
+      })
+    } finally { 
+      getAllUsers()
+    }
+  }
+
   const createCourse = async(data) => {
     try {
       await axiosInstance.post(path.courses, data)
@@ -224,7 +245,8 @@ export const VirtualSchoolProvider = ({ children }) => {
     updateContain,
     deleteContain,
     selected, 
-    setSelected
+    setSelected,
+    createUser
   };
 
   return (

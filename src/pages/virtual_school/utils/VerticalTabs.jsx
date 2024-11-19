@@ -13,7 +13,7 @@ import Courses from "../tabs/admin/tabpanel/Courses";
 import Videos from "../tabs/admin/tabpanel/Videos";
 
 export default function VerticalTabs() {
-  const [value, setValue] = useState(1);
+  const [value, setValue] = useState(0);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const isMobile = useMediaQuery("(max-width:600px)");
 
