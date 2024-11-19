@@ -22,28 +22,28 @@ const Posts = ({ value, index }) => {
 
   const columns = [
     { field: "id", headerName: "ID" },
-    { field: "title", headerName: "Título" },
-    { field: "description", headerName: "Descripción" },
+    { field: "title", headerName: "TITULO" },
+    { field: "description", headerName: "DESCRIPCION" },
     {
       field: "imageUrl",
-      headerName: "Imagen",
+      headerName: "IMAGEN",
       dataRender: (value) => (
         <img src={value} alt="Post" style={{ width: "80px", height: "auto" }} />
       ),
     },
     {
       field: "createdAt",
-      headerName: "Fecha de Creación",
+      headerName: "CREACIÓN",
       dataRender: (value) => new Date(value).toLocaleDateString(),
     },
     {
       field: "user",
-      headerName: "Autor",
+      headerName: "AUTOR",
       dataRender: (value) => `${value.name} ${value.lastname}`,
     },
     {
       field: "tag",
-      headerName: "Tag",
+      headerName: "CATEGORIA",
       dataRender: (value) => value.tag,
     },
   ];

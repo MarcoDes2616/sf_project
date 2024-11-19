@@ -27,25 +27,29 @@ export const VirtualSchoolProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (module === "admin_users") {
-      getAllUsers()
+    fetchDataByModule()
+  }, [module])
+
+  const fetchDataByModule = async() => {
+    if (module === "users") {
+      await getAllUsers()
     }
     if (module === "post") {
-      getAllPosts()
+      await getAllPosts()
     }
     if (module === "courses") {
-      getAllCourses()
+      await getAllCourses()
     }
     if (module === "videos") {
-      getAllVideos()
+      await getAllVideos()
     }
     if (module === "free") {
-      getContain()
+      await getContain()
     }
     if (module === "my_courses") {
-      getContain()
+      await getContain()
     }
-  }, [module])
+  }
 
   const getAllUsers = async () => {
     setLoading(true)
@@ -170,7 +174,7 @@ export const VirtualSchoolProvider = ({ children }) => {
         toast: true,
       });
     } finally {
-      setModule(module);
+      fetchDataByModule()
     }
   };
 
@@ -191,8 +195,8 @@ export const VirtualSchoolProvider = ({ children }) => {
         toast: true,
       });
     } finally {
-      setSelected({})
-      setModule(module);
+      setSelected("")
+      fetchDataByModule()
     }
   };
   

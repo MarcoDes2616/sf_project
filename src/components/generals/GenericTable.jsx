@@ -21,7 +21,7 @@ const GenericTable = ({ data, columns, handleEdit, handleDelete }) => {
             {columns.map((col, index) => (
               <TableCell key={index}>{col.headerName}</TableCell>
             ))}
-            <TableCell>Acciones</TableCell>
+            <TableCell>ACCIONES</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
