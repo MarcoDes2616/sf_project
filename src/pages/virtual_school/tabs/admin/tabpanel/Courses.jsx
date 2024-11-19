@@ -15,18 +15,19 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const Courses = ({ value, index }) => {
-  const { allCourses, setModule } = useContext(VirtualSchoolContext);
+  const { allCourses, setModule, deleteContain, setSelected, setModal  } = useContext(VirtualSchoolContext);
   
   useEffect(() => {
-    setModule("admin_courses");
+    setModule("courses");
   }, []);
 
-  const handleEdit = (postId) => {
-    console.log(`Editando post con ID: ${postId}`);
+  const handleEdit = (data) => {
+    setSelected(data)
+    setModal(true)
   };
 
-  const handleDelete = (postId) => {
-    console.log(`Eliminando post con ID: ${postId}`);
+  const handleDelete = (id) => {
+    deleteContain(id)
   };
   
   return (
@@ -67,14 +68,14 @@ const Courses = ({ value, index }) => {
                   <TableCell>
                     <IconButton
                       color="primary"
-                      onClick={() => handleEdit(post.id)}
+                      onClick={() => handleEdit(course)}
                       aria-label="edit"
                     >
                       <EditIcon />
                     </IconButton>
                     <IconButton
                       color="secondary"
-                      onClick={() => handleDelete(post.id)}
+                      onClick={() => handleDelete(course.id)}
                       aria-label="delete"
                     >
                       <DeleteIcon />

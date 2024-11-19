@@ -1,15 +1,29 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Curtain from "../../../components/generals/Curtain";
+import VirtualSchoolContext from "../../../context/VirtualSchoolContext";
 import "./modals.css"
 
-const CreatePost = ({ open, onClose, onSubmit }) => {
+const CreatePost = ({ open, onClose, onSubmit, selected }) => {
+  const {updateContain} = useContext(VirtualSchoolContext)
   const [formData, setFormData] = useState({
     file: null,
     title: "",
     description: "",
     tagId: "",
   });
-
+  
+  useEffect(() => {
+    if(selected != ""){
+      let data = {
+        title: selected.title,
+        description: selected.description,
+        tagId: selected.tag?.id,
+        file: null
+      }
+      setFormData(data)
+    }
+  }, [open])
+  
   const handleInputChange = (e) => {
     const { name, value, files } = e.target;
     setFormData((prevData) => ({
@@ -17,18 +31,23 @@ const CreatePost = ({ open, onClose, onSubmit }) => {
       [name]: files ? files[0] : value,
     }));
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData();
-    data.append("file", formData.file);
-    data.append("title", formData.title);
-    data.append("description", formData.description);
-    data.append("tagId", formData.tagId);
+      data.append("file", formData.file);
+      data.append("title", formData.title);
+      data.append("description", formData.description);
+      data.append("tagId", formData.tagId);
 
-    onSubmit(data);
+    if (selected !== "") {
+      updateContain(selected.id, formData.file != null ? data : formData);
+    } else {
+      onSubmit(data);
+    }
     onClose();
   };
+  
 
   return (
     <Curtain open={open}>
@@ -48,10 +67,12 @@ const CreatePost = ({ open, onClose, onSubmit }) => {
               name="file"
               onChange={handleInputChange}
               accept="image/*"
-              required
+              required={!selected}
             />
           </div>
-
+          {selected != "" && (
+            <a href={selected.imageUrl}>Ver imagen actual</a>
+          )}
           <div className="form_group">
             <label htmlFor="title">Título</label>
             <input

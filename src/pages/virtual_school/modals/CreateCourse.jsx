@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./modals.css";
 import Curtain from "../../../components/generals/Curtain";
+import VirtualSchoolContext from "../../../context/VirtualSchoolContext";
 
-const CreateCourse = ({ open, onClose, onSubmit }) => {
+const CreateCourse = ({ open, onClose, onSubmit, selected }) => {
+  const {updateContain} = useContext(VirtualSchoolContext)
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -10,6 +12,12 @@ const CreateCourse = ({ open, onClose, onSubmit }) => {
     price: 0,
     discount: 0,
   });
+
+  useEffect(() => {
+    if(selected != {}){
+      setFormData({...selected})
+    }
+  }, [])
 
   const handleInputChange = (e) => {
     const { name, value, files } = e.target;
@@ -28,7 +36,11 @@ const CreateCourse = ({ open, onClose, onSubmit }) => {
     data.append("price", formData.price);
     data.append("discount", formData.discount);
 
-    onSubmit(data);
+    if (selected !== "") {
+      updateContain(selected.id, formData.file != null ? data : formData);
+    } else {
+      onSubmit(data);
+    }
     onClose();
   };
 
@@ -78,7 +90,7 @@ const CreateCourse = ({ open, onClose, onSubmit }) => {
               className="form_input"
               onChange={handleInputChange}
               accept="image/*"
-              required
+              required={!selected}
             />
           </div>
           {/* Precio */}

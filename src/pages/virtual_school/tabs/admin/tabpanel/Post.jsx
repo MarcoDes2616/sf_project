@@ -13,21 +13,21 @@ import {
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import Loading from "../../../../../components/Loading";
 
 const Posts = ({ value, index }) => {
-  const { allPosts, setModule } = useContext(VirtualSchoolContext);
+  const { allPosts, setModule, deleteContain, setSelected, setModal } = useContext(VirtualSchoolContext);
   
   useEffect(() => {
-    setModule("admin_posts");
+    setModule("post");
   }, []);
 
-  const handleEdit = (postId) => {
-    console.log(`Editando post con ID: ${postId}`);
+  const handleEdit = (data) => {
+    setSelected(data)
+    setModal(true)
   };
 
-  const handleDelete = (postId) => {
-    console.log(`Eliminando post con ID: ${postId}`);
+  const handleDelete = (id) => {
+    deleteContain(id)
   };
 
   return (
@@ -68,7 +68,7 @@ const Posts = ({ value, index }) => {
                   <TableCell>
                     <IconButton
                       color="primary"
-                      onClick={() => handleEdit(post.id)}
+                      onClick={() => handleEdit(post)}
                       aria-label="edit"
                     >
                       <EditIcon />

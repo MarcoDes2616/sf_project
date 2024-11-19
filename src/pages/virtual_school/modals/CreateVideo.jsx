@@ -3,7 +3,8 @@ import Curtain from "../../../components/generals/Curtain";
 import VirtualSchoolContext from "../../../context/VirtualSchoolContext";
 import "./modals.css"
 
-const CreateVideo = ({ open, onClose, onSubmit }) => {
+const CreateVideo = ({ open, onClose, onSubmit, selected }) => {
+  const { getAllCourses, allCourses, updateContain } = useContext(VirtualSchoolContext);
   const [formData, setFormData] = useState({
     videoUrl: "",
     duration: 0,
@@ -12,11 +13,17 @@ const CreateVideo = ({ open, onClose, onSubmit }) => {
     title: "",
   });
 
-  const { getAllCourses, allCourses } = useContext(VirtualSchoolContext);
-
   useEffect(() => {
     getAllCourses({ flag: true });
   }, []);
+  console.log(selected);
+  
+  useEffect(() => {
+    if(selected != {}){
+      const {imageUrl, ...restOfData} = selected
+      setFormData({...restOfData})
+    }
+  }, [open])
 
   const handleInputChange = (e) => {
     const { name, value, files } = e.target;
@@ -35,7 +42,11 @@ const CreateVideo = ({ open, onClose, onSubmit }) => {
     data.append("file", formData.file);
     data.append("title", formData.title);
 
-    onSubmit(data);
+    if (selected !== "") {
+      updateContain(selected.id, formData.file != null ? data : formData);
+    } else {
+      onSubmit(data);
+    }
     onClose();
   };
 
@@ -69,10 +80,12 @@ const CreateVideo = ({ open, onClose, onSubmit }) => {
               name="file"
               onChange={handleInputChange}
               accept="image/*"
-              required
+              required={!selected}
             />
           </div>
-
+          {selected != "" && (
+            <a href={selected.imageUrl}>Ver imagen actual</a>
+          )}
           <div className="form_group">
             <label htmlFor="courseId">Asignar curso</label>
             <select

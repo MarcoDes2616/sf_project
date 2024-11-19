@@ -15,18 +15,19 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const Videos = ({ value, index }) => {
-  const { allVideos, setModule } = useContext(VirtualSchoolContext);
+  const { allVideos, setModule, deleteContain, setSelected, setModal } = useContext(VirtualSchoolContext);
 
   useEffect(() => {
-    setModule("admin_videos");
+    setModule("videos");
   }, []);
 
-  const handleEdit = (videoId) => {
-    console.log(`Editando video con ID: ${videoId}`);
+  const handleEdit = (data) => {
+    setSelected(data)
+    setModal(true)
   };
 
-  const handleDelete = (videoId) => {
-    console.log(`Eliminando video con ID: ${videoId}`);
+  const handleDelete = (id) => {
+    deleteContain(id)
   };
 
   return (
@@ -69,7 +70,7 @@ const Videos = ({ value, index }) => {
                   <TableCell>
                     <IconButton
                       color="primary"
-                      onClick={() => handleEdit(video.id)}
+                      onClick={() => handleEdit(video)}
                       aria-label="edit"
                     >
                       <EditIcon />

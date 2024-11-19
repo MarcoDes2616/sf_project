@@ -17,10 +17,13 @@ const Admin = () => {
     loading,
     createCourse,
     createVideo,
+    selected,
+    setSelected
   } = useContext(VirtualSchoolContext);
 
   const toggleModal = () => {
     setModal((current) => !current);
+    setSelected("")
   };
   
   return (
@@ -30,25 +33,31 @@ const Admin = () => {
       </div>
       <Loading loading={loading} />
       <FloatingBtn openModal={toggleModal} />
-      {module == "admin_posts" && (
+      {module == "post" && (
         <CreatePost 
           open={modal} 
           onClose={toggleModal} 
           onSubmit={createPost} 
+          selected={selected}
+          setSelected={setSelected}
           />
       )}
-      {module == "admin_courses" && (
+      {module == "courses" && (
         <CreateCourse
           open={modal}
           onClose={toggleModal}
           onSubmit={createCourse}
+          selected={selected}
+          setSelected={setSelected}
         />
       )}
-      {module == "admin_videos" && (
+      {module == "videos" && (
         <CreateVideo
           open={modal}
           onClose={toggleModal}
           onSubmit={createVideo}
+          selected={selected}
+          setSelected={setSelected}
         />
       )}
     </>

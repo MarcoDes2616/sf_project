@@ -13,13 +13,13 @@ export const VirtualSchoolProvider = ({ children }) => {
   const [allCourses, setAllCourses] = useState([])
   const [allVideos, setAllVideos] = useState([])
   const [allContain, setAllContain] = useState([])
-  const [data, setData] = useState()
+  const [selected, setSelected] = useState("")
   const [modal, setModal] = useState(false)
   const [loading, setLoading] = useState(false)
 
   const path = {
     users: "/users",
-    posts: "/post",
+    post: "/post",
     courses: "/courses",
     videos: "/videos",
     free: "/courses/free",
@@ -28,15 +28,15 @@ export const VirtualSchoolProvider = ({ children }) => {
 
   useEffect(() => {
     if (module === "admin_users") {
-        getAllUsers()
+      getAllUsers()
     }
-    if (module === "admin_posts") {
+    if (module === "post") {
       getAllPosts()
     }
-    if (module === "admin_courses") {
+    if (module === "courses") {
       getAllCourses()
     }
-    if (module === "admin_videos") {
+    if (module === "videos") {
       getAllVideos()
     }
     if (module === "free") {
@@ -56,7 +56,7 @@ export const VirtualSchoolProvider = ({ children }) => {
   
   const getAllPosts = async () => {
     setLoading(true)
-    return await axiosInstance.get(path.posts)
+    return await axiosInstance.get(path.post)
     .then(res => setAllPosts(res.data))
     .finally(() => setLoading(false))
   };
@@ -77,7 +77,7 @@ export const VirtualSchoolProvider = ({ children }) => {
 
   const createPost = async(data) => {
     try {
-      await axiosInstance.post(path.posts, data)
+      await axiosInstance.post(path.post, data)
       Swal.fire({
         title: "Post creado correctamente",
         icon: "success",
@@ -153,6 +153,50 @@ export const VirtualSchoolProvider = ({ children }) => {
     if (newView) setView(newView);
   };
 
+  const deleteContain = async (id) => {
+    try {
+      await axiosInstance.delete(`/${module}/${id}`,);
+      Swal.fire({
+        title: "Contenido eliminado correctamente",
+        icon: "success",
+        confirmButtonColor: "#F89C2A",
+        toast: true,
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "Error al eliminar el contenido",
+        icon: "error",
+        confirmButtonColor: "#F89C2A",
+        toast: true,
+      });
+    } finally {
+      setModule(module);
+    }
+  };
+
+  const updateContain = async (id, data) => {
+    try {
+      await axiosInstance.put(`/${module}/${id}`, data);
+      Swal.fire({
+        title: "Contenido actualizado correctamente",
+        icon: "success",
+        confirmButtonColor: "#F89C2A",
+        toast: true,
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "Error al actualizar el contenido",
+        icon: "error",
+        confirmButtonColor: "#F89C2A",
+        toast: true,
+      });
+    } finally {
+      setSelected({})
+      setModule(module);
+    }
+  };
+  
+
   const functions = {
     setModule,
     module,
@@ -170,10 +214,13 @@ export const VirtualSchoolProvider = ({ children }) => {
     createVideo,
     allVideos,
     allContain,
-    data,
     getCourseVideo,
     view, setView,
-    handleViewChange
+    handleViewChange,
+    updateContain,
+    deleteContain,
+    selected, 
+    setSelected
   };
 
   return (
