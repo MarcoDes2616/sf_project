@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./formSection.css";
 import InputGeneral from "../generals/InputGeneral";
 import YellowBtn from "../generals/YellowBtn";
+import axiosInstance from "../../services/axios";
+import Swal from "sweetalert2";
 
 const FormSection = () => {
   const initialValues = {
@@ -13,9 +15,22 @@ const FormSection = () => {
   };
   const [form, setForm] = useState(initialValues);
 
-  const handleSubmit = (e) => {
+  const sendForm = async() => {
+    await axiosInstance.post("/system/send_form", form)
+  }
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    alert("Hola");
+    try {
+      await sendForm()
+      Swal.fire({
+        title: "Hemos recibido tus datos. Pronto estaremos en contacto!",
+        icon: "success",
+        confirmButtonColor: "#F89C2A",
+        toast: true,
+      })
+    } catch (error) {
+      
+    }
     setForm(initialValues);
   };
 
