@@ -221,6 +221,9 @@ export const VirtualSchoolProvider = ({ children }) => {
     }
   };
   
+  const getFirebaseUsers = async(courseId) => {    
+    return await axiosInstance.get(`/system/get_registre`)
+  }
 
   const functions = {
     setModule,
@@ -246,7 +249,8 @@ export const VirtualSchoolProvider = ({ children }) => {
     deleteContain,
     selected, 
     setSelected,
-    createUser
+    createUser,
+    getFirebaseUsers
   };
 
   return (

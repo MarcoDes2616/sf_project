@@ -12,7 +12,7 @@ import {
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const GenericTable = ({ data, columns, handleEdit, handleDelete }) => {
+const GenericTable = ({ data, columns, handleEdit, handleDelete, actions = true }) => {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="Generic Table">
@@ -21,7 +21,9 @@ const GenericTable = ({ data, columns, handleEdit, handleDelete }) => {
             {columns.map((col, index) => (
               <TableCell key={index}>{col.headerName}</TableCell>
             ))}
+            {actions && (
             <TableCell>ACCIONES</TableCell>
+            )}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -33,7 +35,9 @@ const GenericTable = ({ data, columns, handleEdit, handleDelete }) => {
                     {col.dataRender ? col.dataRender(row[col.field]) : row[col.field]}
                   </TableCell>
                 ))}
-                <TableCell>
+
+                {actions && (
+                  <TableCell>
                   <IconButton
                     color="primary"
                     onClick={() => handleEdit(row)}
@@ -48,7 +52,8 @@ const GenericTable = ({ data, columns, handleEdit, handleDelete }) => {
                   >
                     <DeleteIcon />
                   </IconButton>
-                </TableCell>
+                  </TableCell>
+                )}
               </TableRow>
             ))
           ) : (
