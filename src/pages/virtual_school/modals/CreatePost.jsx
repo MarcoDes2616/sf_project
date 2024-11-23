@@ -74,7 +74,7 @@ const CreatePost = ({ open, onClose, onSubmit, selected }) => {
             />
           </div>
           {selected != "" && (
-            <a href={selected.imageUrl}>Ver imagen actual</a>
+            <a target="_blank" href={selected.imageUrl}>Ver imagen actual</a>
           )}
           <div className="form_group">
             <label htmlFor="title">Título</label>

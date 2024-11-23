@@ -99,7 +99,7 @@ const CreateCourse = ({ open, onClose, onSubmit, selected }) => {
               required={!selected}
             />
           </div>
-          {selected != "" && <a href={selected.imageUrl}>Ver imagen actual</a>}
+          {selected != "" && <a target="_blank" href={selected.imageUrl}>Ver imagen actual</a>}
           <div className="form_group">
             <label htmlFor="price" className="form_label">
               Precio

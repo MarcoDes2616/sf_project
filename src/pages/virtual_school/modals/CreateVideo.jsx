@@ -86,7 +86,7 @@ const CreateVideo = ({ open, onClose, onSubmit, selected }) => {
             />
           </div>
           {selected != "" && (
-            <a href={selected.imageUrl}>Ver imagen actual</a>
+            <a href={selected.imageUrl} target="_blank">Ver imagen actual</a>
           )}
           <div className="form_group">
             <label htmlFor="courseId">Asignar curso</label>

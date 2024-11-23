@@ -25,11 +25,11 @@ const HeadBand = () => {
           <PrimaryBtn btnAction={handdleActionsIconUser}>ESCUELA VIRTUAL</PrimaryBtn>
         </TokenAnimate>
         </div>
-          <a className="flex row x-big" href="https://t.me/Tradingsinfrontera">
+          <a target="_blank" className="flex row x-big" href="https://t.me/Tradingsinfrontera">
             <i className="bx bxl-telegram bx-md" />
             <p>@Tradingsinfrontera</p>
           </a>
-          <a className="flex row x-big" href="https://www.instagram.com/trading_sinfrontera?igsh=MWhoeDM0MTRpeWZ4Yw==">
+          <a target="_blank" className="flex row x-big" href="https://www.instagram.com/trading_sinfrontera?igsh=MWhoeDM0MTRpeWZ4Yw==">
             <i className="bx bxl-instagram bx-md" />
             <p>@trading_sinfrontera</p>
           </a>
