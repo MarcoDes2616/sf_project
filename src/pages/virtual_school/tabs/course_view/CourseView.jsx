@@ -88,6 +88,15 @@ const CourseView = () => {
                         e.stopPropagation();
                       }}
                     >
+                      
+                    </div>
+                    <div
+                      className="overlay-blocker2"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                      }}
+                    >
                       {!showImageOverlay && 
                       <button
                         className="pause-button"
@@ -102,13 +111,6 @@ const CourseView = () => {
                         ⏸ Pause
                       </button>}
                     </div>
-                    <div
-                      className="overlay-blocker2"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                      }}
-                    ></div>
                   </div>
                 </>
               )}

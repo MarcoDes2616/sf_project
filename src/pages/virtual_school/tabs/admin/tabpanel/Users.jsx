@@ -60,7 +60,6 @@ const Users = ({ value, index }) => {
     handleDelete,
     handleEdit,
   };
-  console.log(firebaseUsers);
   
   const firebaseColumns = [
     { field: "id", headerName: "ID" },
