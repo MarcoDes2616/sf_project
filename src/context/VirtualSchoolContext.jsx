@@ -102,7 +102,7 @@ export const VirtualSchoolProvider = ({ children }) => {
 
   const createUser = async(data) => {
     try {
-      await axiosInstance.post(path.post, data)
+      await axiosInstance.post(path.users, data)
       Swal.fire({
         title: "Usuario creado correctamente",
         icon: "success",
