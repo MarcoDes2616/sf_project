@@ -4,19 +4,24 @@ import Curtain from "../../../components/generals/Curtain";
 import VirtualSchoolContext from "../../../context/VirtualSchoolContext";
 
 const CreateUser = ({ open, onClose, onSubmit, selected }) => {
-  const { updateContain } = useContext(VirtualSchoolContext);
+  const { getAllCourses, allCourses, updateContain } =
+    useContext(VirtualSchoolContext);
   const initialValues = {
     name: "",
     lastname: "",
     birthday: "",
     documentNumber: "",
     email: "",
-    password: "",
     signDeclare: false,
     status: true,
     roleId: "",
-  }
+    courseId: null,
+  };
   const [formData, setFormData] = useState(initialValues);
+
+  useEffect(() => {
+    getAllCourses({ flag: true });
+  }, []);
 
   useEffect(() => {
     if (open && selected != "") {
@@ -27,7 +32,7 @@ const CreateUser = ({ open, onClose, onSubmit, selected }) => {
           : "",
       });
     } else {
-      setFormData(initialValues)
+      setFormData(initialValues);
     }
   }, [open]);
 
@@ -57,7 +62,9 @@ const CreateUser = ({ open, onClose, onSubmit, selected }) => {
           <p className="x-big full-w bold">
             {selected ? "Editar Usuario" : "Crear Usuario"}
           </p>
-          <br /><br /><br />
+          <br />
+          <br />
+          <br />
           <button className="btn_close" onClick={onClose}>
             &times;
           </button>
@@ -65,7 +72,9 @@ const CreateUser = ({ open, onClose, onSubmit, selected }) => {
         <form onSubmit={handleSubmit} className="form_container">
           <div className="form_group flex row al-c jf-sb">
             <div className="flex column">
-              <label htmlFor="name" className="form_label">Nombre</label>
+              <label htmlFor="name" className="form_label">
+                Nombre
+              </label>
               <input
                 type="text"
                 id="name"
@@ -77,7 +86,9 @@ const CreateUser = ({ open, onClose, onSubmit, selected }) => {
               />
             </div>
             <div className="flex column">
-              <label htmlFor="lastname" className="form_label">Apellido</label>
+              <label htmlFor="lastname" className="form_label">
+                Apellido
+              </label>
               <input
                 type="text"
                 id="lastname"
@@ -131,22 +142,6 @@ const CreateUser = ({ open, onClose, onSubmit, selected }) => {
               required
             />
           </div>
-          {!selected && (
-            <div className="form_group">
-              <label htmlFor="password" className="form_label">
-                Contraseña
-              </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                className="form_input"
-                value={formData.password}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-          )}
           <div className="form_group">
             <label htmlFor="roleId" className="form_label">
               Rol
@@ -165,16 +160,47 @@ const CreateUser = ({ open, onClose, onSubmit, selected }) => {
             </select>
           </div>
           <div className="form_group">
-            <label htmlFor="signDeclare" className="form_label">
-              <input
-                type="checkbox"
-                id="signDeclare"
-                name="signDeclare"
-                checked={formData.signDeclare}
-                onChange={handleInputChange}
-              />
-              Declaración firmada
-            </label>
+            <label htmlFor="courseId">Asignar curso</label>
+            <select
+              id="courseId"
+              name="courseId"
+              value={formData.courseId || ""}
+              onChange={handleInputChange}
+            >
+              <option value="" disabled>
+                Selecciona un curso
+              </option>
+              {allCourses &&
+                allCourses.map((course) => (
+                  <option key={course.id} value={course.id}>
+                    {course.title}
+                  </option>
+                ))}
+            </select>
+          </div>
+          <div className="form_group">
+            <div className="flex row jf-sb">
+              <label htmlFor="signDeclare" className="form_label">
+                <input
+                  type="checkbox"
+                  id="signDeclare"
+                  name="signDeclare"
+                  checked={formData.signDeclare}
+                  onChange={handleInputChange}
+                />
+                Declaración firmada
+              </label>
+              <label htmlFor="signDeclare" className="form_label">
+                <input
+                  type="checkbox"
+                  id="status"
+                  name="status"
+                  checked={formData.status}
+                  onChange={handleInputChange}
+                />
+                Activo
+              </label>
+            </div>
           </div>
           <div className="form_actions">
             <button type="submit" className="btn_submit">

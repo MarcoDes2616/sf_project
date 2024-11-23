@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import VerticalTabs from "../../utils/VerticalTabs";
 import CreatePost from "../../modals/CreatePost";
 import { useContext } from "react";
@@ -8,8 +8,11 @@ import Loading from "../../../../components/Loading";
 import CreateCourse from "../../modals/CreateCourse";
 import CreateVideo from "../../modals/CreateVideo";
 import CreateUser from "../../modals/CreateUser";
+import { useNavigate } from "react-router-dom";
+import authService from "../../../../services/authServices";
 
 const Admin = () => {
+  const navigate = useNavigate()
   const {
     modal,
     setModal,
@@ -20,8 +23,22 @@ const Admin = () => {
     createVideo,
     selected,
     setSelected,
-    createUser
+    createUser,
+    confirmAdmin
   } = useContext(VirtualSchoolContext);
+
+  useEffect(() => {
+    verifyRole()
+  }, [])
+
+  const verifyRole = async() => {
+    try {
+      await confirmAdmin()
+    } catch (error) {
+      authService.actionLogout()
+    }
+  }
+
 
   const toggleModal = () => {
     setModal((current) => !current);

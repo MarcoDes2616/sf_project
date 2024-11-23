@@ -225,7 +225,12 @@ export const VirtualSchoolProvider = ({ children }) => {
     return await axiosInstance.get(`/system/get_registre`)
   }
 
+  const confirmAdmin = async() => {
+    return await axiosInstance.get("system/verifyAdmin")
+  }
+
   const functions = {
+    confirmAdmin,
     setModule,
     module,
     getAllUsers,

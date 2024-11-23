@@ -108,7 +108,6 @@ const CreateVideo = ({ open, onClose, onSubmit, selected }) => {
                 ))}
             </select>
           </div>
-
           <div className="form_group">
             <label htmlFor="videoUrl">URL del Video</label>
             <input
