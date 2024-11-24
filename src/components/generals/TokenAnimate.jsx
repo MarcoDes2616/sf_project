@@ -11,7 +11,7 @@ const TokenAnimate = ({children}) => {
         setClassName(token && !(pathname.includes("/virtual_school")))
     }, [pathname])
     return (
-        <div className={className ? "virtual_scholl_btn" : ""}>
+        <div className={className ? "virtual_scholl_btn flex jf-c" : " flex jf-c"}>
             {children}
         </div>
     );

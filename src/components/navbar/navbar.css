@@ -105,13 +105,6 @@
   filter: drop-shadow(0 0 10px var(--primaryC));
 }
 
-.virtual_scholl_btn {
-  /* Aplica la animación */
-  animation: scale-up 5s ease-in-out 2; /* 5 segundos por repetición, 2 repeticiones */
-  animation-delay: 0s;
-  animation-iteration-count: infinite;
-}
-
 @keyframes scale-up {
   0% {
     transform: scale(1);

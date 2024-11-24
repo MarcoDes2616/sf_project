@@ -52,9 +52,8 @@
 }
 
 .headBand_info div{
-    width: 98%;
     text-align: center;
-    max-width: 370px;
+    max-width: 340px;
 }
 
 .reset_password_container{
@@ -110,6 +109,15 @@
     font-style: italic;
     margin: 2rem 0;
     color: var(--secondaryCC);
+}
+
+.virtual_scholl_btn {
+    width: fit-content;
+    max-width: 150px !important;
+    animation: scale-up 5s ease-in-out 2; /* 5 segundos por repetición, 2 repeticiones */
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    
 }
 
 
