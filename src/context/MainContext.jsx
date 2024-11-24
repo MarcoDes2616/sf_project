@@ -63,8 +63,6 @@ const MainContextProvider = ({ children }) => {
   }
 
   const getAllPosts = async(tagId) => {
-    console.log(tagId);
-    
     return await axiosInstance.get(`/post${tagId != "" ? "?tagId=" + tagId : ""}`)
   };
   
