@@ -5,7 +5,6 @@ const MainContext = createContext();
 
 const MainContextProvider = ({ children }) => {
   const [openModalLogin, setOpenModalLogin] = useState(false);
-  const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const [openRedirectModal, setOpenRedirectModal] = useState(false)
   const [userData, setUserData] = useState("")
@@ -17,13 +16,12 @@ const MainContextProvider = ({ children }) => {
     validate_sesion: "/system/me",
   };
 
-
   const login = async (data) => {
     try {
       const response = await axiosInstance.post(path.login, data);
       return response;
     } catch (error) {
-      console.error(error);
+
     }
   };
 
@@ -31,7 +29,7 @@ const MainContextProvider = ({ children }) => {
     try {
       return await axiosInstance.post(path.reset, data);
     } catch (error) {
-      setError("Error resetting password");
+
     }
   };
 
@@ -64,7 +62,9 @@ const MainContextProvider = ({ children }) => {
       .then(res => setUserData(res.data.user))
   }
 
-  const getAllPosts = async({tagId}) => {
+  const getAllPosts = async(tagId) => {
+    console.log(tagId);
+    
     return await axiosInstance.get(`/post${tagId != "" ? "?tagId=" + tagId : ""}`)
   };
   
@@ -84,6 +84,10 @@ const MainContextProvider = ({ children }) => {
     },
   ];
 
+  const getThisPost = async(id) => {
+    return axiosInstance.get(`/post/${id}`)
+  }
+
   const functions = {
     handleScrollToTop,
     menuOptions,
@@ -100,7 +104,8 @@ const MainContextProvider = ({ children }) => {
     getMyProfile,
     getAllPosts,
     loading,
-    setLoading
+    setLoading,
+    getThisPost,
   };
 
   return (

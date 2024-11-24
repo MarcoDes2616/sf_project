@@ -13,7 +13,7 @@ const PostCard = (post) => {
                 <p className="post_card_author">Por {user.name + " " + user.lastname}</p>
                 <p className="post_card_date">{date}</p>
                 <p className="post_card_summary">{summary}</p>
-                <a href={`/#/blog/${id}`} className="post_card_link" target="_blank" rel="noopener noreferrer">
+                <a href={`/#/blog/post/${id}`} className="post_card_link" rel="noopener noreferrer">
                     Leer más
                 </a>
             </div>

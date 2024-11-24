@@ -12,10 +12,10 @@ const Blog = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchData({tagId});
+    fetchData(tagId);
   }, [,tagId]);
 
-  const fetchData = async (tagId) => {
+  const fetchData = async(tagId) => {
     setLoading(true)
     try {
       const { data } = await getAllPosts(tagId);
