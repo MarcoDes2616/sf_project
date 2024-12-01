@@ -1,0 +1,18 @@
+.construction-notice {
+    text-align: center;
+    padding: 2rem;
+    margin: 2rem;
+    border: 2px dashed #ffa500;
+    border-radius: 8px;
+    background-color: #fff8dc;
+}
+
+.construction-notice h2 {
+    color: #ff6b6b;
+    margin-bottom: 1rem;
+}
+
+.construction-notice p {
+    color: #666;
+    margin: 0.5rem 0;
+} 
