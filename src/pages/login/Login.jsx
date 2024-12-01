@@ -1,7 +1,7 @@
 import React from "react";
 import { TextField, InputAdornment, Button } from "@mui/material";
 
-const Login = ({ formData, setFormData, state, setState }) => {
+const Login = ({ formData, setFormData, state, setState, errors }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
@@ -15,6 +15,8 @@ const Login = ({ formData, setFormData, state, setState }) => {
         variant="outlined"
         value={formData.email}
         onChange={handleChange}
+        error={errors.email.error}
+        helperText={errors.email.message}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">@example.com</InputAdornment>
@@ -40,6 +42,8 @@ const Login = ({ formData, setFormData, state, setState }) => {
             variant="outlined"
             value={formData.password}
             onChange={handleChange}
+            error={errors.password.error}
+            helperText={errors.password.message}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">***</InputAdornment>
