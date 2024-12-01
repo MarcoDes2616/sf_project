@@ -10,6 +10,7 @@ import ResetPassword from "./pages/resetPassword/ResetPassword";
 import NotFound from "./pages/404/NotFound";
 import ModalsContainer from "./components/ModalsContainer";
 import VirtualSchool from "./pages/virtual_school/VirtualSchool";
+import AboutUs from './components/about_us/AboutUs';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about_us" element={<AboutUs />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/post/:id" element={<BlogItemView />} />
         <Route path="/reset_password/:tokenReset" element={<ResetPassword />} />
