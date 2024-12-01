@@ -1,8 +1,26 @@
 import React, { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { TextField, Button, Typography, Box } from "@mui/material";
+import { TextField, Button, Typography, Box, List, ListItem } from "@mui/material";
 import Swal from "sweetalert2";
 import MainContext from "../../context/MainContext";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+
+const PasswordRequirement = ({ isValid, text }) => (
+  <ListItem sx={{ padding: '2px 0' }}>
+    {isValid ? (
+      <CheckCircleOutlineIcon color="success" sx={{ mr: 1 }} />
+    ) : (
+      <CancelOutlinedIcon color="error" sx={{ mr: 1 }} />
+    )}
+    <Typography
+      variant="body2"
+      color={isValid ? "success.main" : "error.main"}
+    >
+      {text}
+    </Typography>
+  </ListItem>
+);
 
 const ResetPassword = () => {
   const { tokenReset } = useParams();
@@ -19,12 +37,38 @@ const ResetPassword = () => {
     });
   };
   
+  const validatePassword = (password) => {
+    const validations = {
+      length: password.length >= 8,
+      upperCase: /[A-Z]/.test(password),
+      number: /\d/.test(password)
+    };
+
+    const errorMessages = [];
+    if (!validations.length) errorMessages.push("- Mínimo 8 caracteres");
+    if (!validations.upperCase) errorMessages.push("- Al menos una mayúscula");
+    if (!validations.number) errorMessages.push("- Al menos un número");
+
+    return {
+      isValid: Object.values(validations).every(v => v),
+      message: errorMessages.join('\n')
+    };
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (data.password != data.confirmPassword) {
+    
+    const validation = validatePassword(data.password);
+    if (!validation.isValid) {
+      setError("La contraseña debe contener:\n" + validation.message);
+      return;
+    }
+    
+    if (data.password !== data.confirmPassword) {
       setError("Las contraseñas no coinciden");
       return;
     }
+
     try {
       const {status} = await fetchUpdatePass(data.password, tokenReset);
       if (status === 201) {
@@ -47,6 +91,12 @@ const ResetPassword = () => {
         navigate("/");
       });
     }
+  };
+
+  const passwordChecks = {
+    length: data.password.length >= 8,
+    upperCase: /[A-Z]/.test(data.password),
+    number: /\d/.test(data.password)
   };
 
   return (
@@ -79,6 +129,22 @@ const ResetPassword = () => {
             onChange={handleChange}
             fullWidth
           />
+          
+          <List sx={{ mt: -1, mb: -1 }}>
+            <PasswordRequirement 
+              isValid={passwordChecks.length}
+              text="Mínimo 8 caracteres"
+            />
+            <PasswordRequirement 
+              isValid={passwordChecks.upperCase}
+              text="Al menos una mayúscula"
+            />
+            <PasswordRequirement 
+              isValid={passwordChecks.number}
+              text="Al menos un número"
+            />
+          </List>
+
           <TextField
             label="Confirmar Contraseña"
             variant="outlined"

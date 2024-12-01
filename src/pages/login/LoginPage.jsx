@@ -8,6 +8,10 @@ import "./login.css"
 import { Button } from "@mui/material";
 
 const initialValues = { email: "", password: "" }
+const initialErrors = { 
+  email: { error: false, message: "" }, 
+  password: { error: false, message: "" }
+};
 
 function LoginPage() {
   const { setOpenModalLogin, openModalLogin, login, fetchRequestReset, setOpenRedirectModal } =
@@ -16,6 +20,7 @@ function LoginPage() {
   const [formData, setFormData] = useState(initialValues);
   const [state, setState] = useState(0);
   const navigate = useNavigate();
+  const [errors, setErrors] = useState(initialErrors);
 
   const handdleFinally = () => {
     setState(0)
@@ -23,8 +28,33 @@ function LoginPage() {
     setOpenModalLogin(false)
   }
 
+  const validateFields = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isEmailValid = emailRegex.test(formData.email);
+    const isPasswordValid = formData.password.length >= 8;
+    
+    setErrors({
+      email: {
+        error: !isEmailValid,
+        message: !isEmailValid ? "Correo no válido" : ""
+      },
+      password: {
+        error: state === 0 && !isPasswordValid,
+        message: state === 0 && !isPasswordValid ? "La contraseña debe tener al menos 8 caracteres" : ""
+      }
+    });
+    
+    if (state === 0) {
+      return isEmailValid && isPasswordValid;
+    }
+    return isEmailValid;
+  };
+
   const handleLogin = async (event) => {
     event.preventDefault();
+    
+    if (!validateFields()) return;
+
     try {
       const {status, data} = await login(formData);
       if (status === 200) {
@@ -54,6 +84,9 @@ function LoginPage() {
 
   const requestReset = async (event) => {
     event.preventDefault();
+    
+    if (!validateFields()) return;
+
     formData.frontBaseUrl = `${window.location.origin}/#/reset_password`;
     try {
       const response = await fetchRequestReset(formData);
@@ -82,20 +115,22 @@ function LoginPage() {
           onClick={handdleFinally}
         ></i>
         <h1>Login Page</h1>
-        <Login
-          setFormData={setFormData}
-          formData={formData}
-          state={state}
-          setState={setState}
-        />
-        <Button 
-          disabled={formData.email == ""} 
-          onClick={state == 0 ? handleLogin : requestReset} 
-          variant="outlined"
-          className="flex center autoM"
-          color="primary">
-          {state == 0 ? "Ingresar" : "Enviar"}
-        </Button>
+        <form onSubmit={state === 0 ? handleLogin : requestReset} className="flex column al-c jf-c">
+          <Login
+            setFormData={setFormData}
+            formData={formData}
+            state={state}
+            setState={setState}
+            errors={errors}
+          />
+          <Button 
+            type="submit"
+            variant="outlined"
+            className="flex center autoM"
+            color="primary">
+            {state == 0 ? "Ingresar" : "Enviar"}
+          </Button>
+        </form>
       </div>
     </Curtain>
   );
