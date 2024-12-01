@@ -89,7 +89,7 @@ function LoginPage() {
           setState={setState}
         />
         <Button 
-          disabled={(formData.email && formData.password) == ""} 
+          disabled={formData.email == ""} 
           onClick={state == 0 ? handleLogin : requestReset} 
           variant="outlined"
           className="flex center autoM"
