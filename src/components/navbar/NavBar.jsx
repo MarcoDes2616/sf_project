@@ -71,7 +71,9 @@ const NavBar = () => {
         </div>
         <br />
         <br />
-        <PrimaryBtn>ESCUELA VIRTUAL</PrimaryBtn>
+        <TokenAnimate>
+          <PrimaryBtn btnAction={() => handdleActionsIconUser("my_courses")}>ESCUELA VIRTUAL</PrimaryBtn>
+        </TokenAnimate>
       </div>
     </div>
   );

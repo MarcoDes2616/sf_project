@@ -4,6 +4,7 @@ import './AboutUs.css';
 const AboutUs = () => {
     return (
         <div className="construction-notice">
+            <br /><br /><br /><br />
             <h2>🚧 Sección En Construcción 🚧</h2>
             <p>Estamos trabajando para brindarte la mejor experiencia.</p>
             <p>¡Vuelve pronto!</p>
