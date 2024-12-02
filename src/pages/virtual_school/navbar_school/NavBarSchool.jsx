@@ -14,7 +14,7 @@ export default function NavBarSchool() {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm')); // Detecta si es mobile
 
   useEffect(() => {
-    const roleId = localStorage.getItem('roleId');
+    const roleId = JSON.parse(localStorage.getItem('roleId'));
     setIsAdmin(roleId === "1");
 
     switch (location.pathname) {
