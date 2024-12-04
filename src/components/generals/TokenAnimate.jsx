@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const TokenAnimate = ({children}) => {
-    const token = localStorage.getItem("token")
+    const token = JSON.parse(localStorage.getItem("token"))
     const {pathname} = useLocation()
     const [className, setClassName] = useState(false)
     useEffect(() => {

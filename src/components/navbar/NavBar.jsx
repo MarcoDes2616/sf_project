@@ -12,7 +12,7 @@ import TokenAnimate from "../generals/TokenAnimate";
 const NavBar = () => {
   const { icons, menuOptions, setOpenModalLogin } =
     useContext(MainContext);
-  const token = localStorage.getItem("token")
+  const token = JSON.parse(localStorage.getItem("token"))
   const navigate = useNavigate()
   
   const [menuOpen, setMenuOpen] = useState(false);

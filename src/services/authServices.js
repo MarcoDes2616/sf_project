@@ -1,11 +1,9 @@
 const getCurrentUser = () => {
-  return localStorage.getItem("token");
+  return JSON.parse(localStorage.getItem("token"));
 };
 
 const actionLogout = () => {
-  localStorage.removeItem("token");
-  localStorage.removeItem("user");
-  localStorage.removeItem("roleId");
+  localStorage.clear();
   window.location.reload();
 };
 

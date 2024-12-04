@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const HeadBand = () => {
   const { setOpenModalLogin } = useContext(MainContext);
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
+  const token = JSON.parse(localStorage.getItem("token"));
 
   const handdleActionsIconUser = () => {
     if (token) {

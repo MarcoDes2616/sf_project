@@ -58,14 +58,14 @@ function LoginPage() {
     try {
       const {status, data} = await login(formData);
       if (status === 200) {
-        localStorage.setItem("token", data.token);
+        localStorage.setItem("token", JSON.stringify(data.token));
         localStorage.setItem(
           "user",
           JSON.stringify(
             data.user.name + " " + data.user.lastname
           )
         );
-        localStorage.setItem("roleId", data.user.roleId);
+        localStorage.setItem("roleId", JSON.stringify(data.user.roleId));
       }
       setOpenRedirectModal(true)
     } catch (error) {      
@@ -114,7 +114,7 @@ function LoginPage() {
           className="bx bx-x bx-sm btn_app"
           onClick={handdleFinally}
         ></i>
-        <h1>Login Page</h1>
+        <h3>{ currentUser ? "Iniciar sesión" : "Restablecer contraseña" }</h3>
         <form onSubmit={state === 0 ? handleLogin : requestReset} className="flex column al-c jf-c">
           <Login
             setFormData={setFormData}

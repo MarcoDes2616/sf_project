@@ -1,9 +1,7 @@
-import { useContext, useEffect } from 'react';
 import { Navigate, Outlet} from 'react-router-dom';
-import MainContext from '../context/MainContext';
 
 const ProtectedRoutes = () => {
-    const token = localStorage.getItem('token');
+    const token = JSON.parse(localStorage.getItem('token'));
 
     if (token) {
         return <Outlet />
