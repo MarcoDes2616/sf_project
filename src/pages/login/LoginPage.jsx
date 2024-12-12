@@ -114,7 +114,7 @@ function LoginPage() {
           className="bx bx-x bx-sm btn_app"
           onClick={handdleFinally}
         ></i>
-        <h3>{ currentUser ? "Iniciar sesión" : "Restablecer contraseña" }</h3>
+        <h3>{ state === 0 ? "Iniciar sesión" : "Restablecer contraseña" }</h3>
         <form onSubmit={state === 0 ? handleLogin : requestReset} className="flex column al-c jf-c">
           <Login
             setFormData={setFormData}

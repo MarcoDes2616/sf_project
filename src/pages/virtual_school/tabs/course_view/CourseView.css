@@ -44,6 +44,9 @@
   border-radius: 8px;
   padding: 15px;
   width: 100%;
+  height: calc(100vw * .56);
+  max-height: 420px;
+  overflow-y: scroll;
 }
 
 .video-list h3 {

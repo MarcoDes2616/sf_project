@@ -11,11 +11,11 @@ export default function NavBarSchool() {
   const navigate = useNavigate();
   const location = useLocation();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm')); // Detecta si es mobile
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
     const roleId = JSON.parse(localStorage.getItem('roleId'));
-    setIsAdmin(roleId === "1");
+    setIsAdmin(roleId === 1 || roleId === "1");
 
     switch (location.pathname) {
       case '/virtual_school/my_courses':

@@ -35,7 +35,7 @@ const Videos = ({ value, index }) => {
     {
       field: "duration",
       headerName: "DURACIÓN",
-      dataRender: (value) => `${value} horas`,
+      dataRender: (value) => `${value} min`,
     },
     {
       field: "imageUrl",
