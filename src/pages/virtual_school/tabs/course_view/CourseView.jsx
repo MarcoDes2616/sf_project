@@ -136,7 +136,7 @@ const CourseView = () => {
             <p>Duración total: {
               data?.course?.totalDuration >= 60 
                 ? `${Math.floor(data.course.totalDuration / 60)} hora${Math.floor(data.course.totalDuration / 60) !== 1 ? 's' : ''} ${data.course.totalDuration % 60} minuto${(data.course.totalDuration % 60) !== 1 ? 's' : ''}`
-                : `${data.course.totalDuration} minutos`
+                : `${data?.course.totalDuration} minutos`
             }</p>
             <p>Número de videos: {data?.course?.videoCount}</p>
           </div>
