@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 const FooterSection = () => {
   const { handleScrollToTop, menuOptions, icons, setOpenModalLogin} = useContext(MainContext);
   const navigate = useNavigate()
-  const token = JSON.parse(localStorage.getItem("token"))
+  const token = localStorage.getItem("token");
 
   const handdleActionsIconUser = () => {
     if (token) {
