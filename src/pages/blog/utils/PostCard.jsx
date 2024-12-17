@@ -1,5 +1,4 @@
 import React from 'react';
-import DiamondIcon from '@mui/icons-material/Diamond';
 
 const PostCard = (post, premium) => {
     
@@ -10,7 +9,7 @@ const PostCard = (post, premium) => {
         <div className="post_card">
             <img src={imageUrl} alt={title} className="post_card_image" />
             <div className="post_card_content">
-                <h3 className="post_card_title">{title} {premium == true && <DiamondIcon />}</h3>
+                <h3 className="post_card_title">{title}</h3>
                 <p className="post_card_category">{tag.tag}</p>
                 <p className="post_card_author">Por {user.name + " " + user.lastname}</p>
                 <p className="post_card_date">{date}</p>
