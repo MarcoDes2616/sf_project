@@ -26,7 +26,7 @@ function MyCourses() {
         {allContain[0] ? (
           <div className="blog_premium post_cards_container">
             {allPosts.map((post, i) => (
-              <PostCard key={i} {...post} premium={true} />
+              <PostCard key={i} {...post}/>
             ))}
           </div>
         ) : (
