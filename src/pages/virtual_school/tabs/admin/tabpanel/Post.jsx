@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from "react";
 import TabPanel from "../../../utils/TabPanel";
 import VirtualSchoolContext from "../../../../../context/VirtualSchoolContext";
 import GenericTable from "../../../../../components/generals/GenericTable";
+import { helpUtil } from "../../../../../helpers/helpUtil";
 
 const Posts = ({ value, index }) => {
   const { allPosts, setModule, deleteContain, setSelected, setModal } =
@@ -23,7 +24,12 @@ const Posts = ({ value, index }) => {
   const columns = [
     { field: "id", headerName: "ID" },
     { field: "title", headerName: "TITULO" },
-    { field: "description", headerName: "DESCRIPCION" },
+    { field: "description", 
+      headerName: "DESCRIPCION", 
+      dataRender: (value) => (
+      helpUtil.truncateText(value)
+      ) 
+    },
     {
       field: "imageUrl",
       headerName: "IMAGEN",
