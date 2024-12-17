@@ -41,11 +41,9 @@ const Videos = ({ value, index }) => {
       field: "imageUrl",
       headerName: "IMAGEN",
       dataRender: (value) => (
-        <img
-          src={value}
-          alt="Imagen"
-          style={{ width: "80px", height: "auto" }}
-        />
+        value ? (
+          <img src={value} alt="miniatura" style={{ width: "80px", height: "auto" }} />
+        ) : null
       ),
     },
     { field: "courseId", headerName: "CURSO" },

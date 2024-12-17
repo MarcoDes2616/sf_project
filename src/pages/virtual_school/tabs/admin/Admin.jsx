@@ -55,7 +55,7 @@ const Admin = () => {
       {module == "post" && (
         <CreatePost 
           open={modal} 
-          onClose={toggleModal} 
+          onClose={toggleModal}
           onSubmit={createPost} 
           selected={selected}
           setSelected={setSelected}

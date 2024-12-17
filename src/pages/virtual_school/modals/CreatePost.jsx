@@ -29,6 +29,10 @@ const CreatePost = ({ open, onClose, onSubmit, selected }) => {
   
   const handleInputChange = (e) => {
     const { name, value, files } = e.target;
+    if (files && !files[0].type.startsWith('image/')) {
+      alert("Por favor, selecciona un archivo de tipo imagen.");
+      return;
+    }
     setFormData((prevData) => ({
       ...prevData,
       [name]: files ? files[0] : value,
@@ -51,13 +55,18 @@ const CreatePost = ({ open, onClose, onSubmit, selected }) => {
     onClose();
   };
   
+  const handleClose = () => {
+    setFormData(initialValues);
+    onClose();
+  };
+  
 
   return (
     <Curtain open={open}>
       <div className="modal_container md">
         <div className="flex row jf-sb full-w">
           <p className="x-big full-w bold">Crear Publicación</p>
-          <button className="btn_close" onClick={onClose}>
+          <button className="btn_close" onClick={handleClose}>
             &times;
           </button>
         </div>
@@ -123,7 +132,7 @@ const CreatePost = ({ open, onClose, onSubmit, selected }) => {
 
           <div className="form_actions">
             <button type="submit" className="btn_submit">
-              {selected ? "Actualizar Post" : "Crear Post"}
+              {selected ? "Actualizar" : "Crear"}
             </button>
           </div>
         </form>
