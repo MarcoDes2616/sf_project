@@ -19,7 +19,6 @@ const FilterComponent = ({setTagId, tagId}) => {
     { id: 3, category: "Resultados" },
     { id: 4, category: "Clases" },
     { id: 5, category: "Gestión" },
-    { id: 6, category: "Señales" },
   ];
 
   const handleFilterSelect = (category) => {
