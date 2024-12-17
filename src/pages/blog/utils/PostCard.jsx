@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PostCard = (post, premium) => {
+const PostCard = (post) => {
     
     const {id, title, description, imageUrl, tag, user, createdAt} = post
     const date = new Date(createdAt).toLocaleString();
