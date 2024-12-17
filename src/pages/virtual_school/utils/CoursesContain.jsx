@@ -98,7 +98,7 @@ const CoursesContain = ({ allContain, handleViewChange, view }) => {
             ))
           ) : (
             <Typography variant="body1">
-              No hay cursos gratuitos disponibles.
+              No hay cursos disponibles.
             </Typography>
           )}
         </Grid>

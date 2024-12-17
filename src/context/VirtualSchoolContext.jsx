@@ -48,6 +48,7 @@ export const VirtualSchoolProvider = ({ children }) => {
     }
     if (module === "my_courses") {
       await getContain()
+      await getAllPosts(6)
     }
   }
 
@@ -58,9 +59,10 @@ export const VirtualSchoolProvider = ({ children }) => {
     .finally(() => setLoading(false))
   };
   
-  const getAllPosts = async () => {
+  const getAllPosts = async (tagId) => {
     setLoading(true)
-    return await axiosInstance.get(path.post)
+    await axiosInstance.get(`${path.post}${tagId ? "?tagId=" + tagId : ""}`)
+    //  await axiosInstance.get(path.post)
     .then(res => setAllPosts(res.data))
     .finally(() => setLoading(false))
   };

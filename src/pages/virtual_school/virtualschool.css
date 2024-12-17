@@ -48,6 +48,30 @@
   color: var(--secondaryTC);
   padding: 1.5rem;
 }
+.blog_premium{
+  background-image: url("/bg_tre3.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+.premium-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.2rem; /* Tamaño de fuente */
+  color: #ff9800; /* Color del texto */
+  padding: 10px; /* Espaciado interno */
+  background-color: #f9f9f9; /* Fondo claro */
+  border: 1px solid #ff9800; /* Borde del mismo color que el texto */
+  border-radius: 5px; /* Bordes redondeados */
+  margin: 20px 0;
+}
+
+.premium-message .MuiSvgIcon-root {
+  margin-right: 8px; /* Espacio entre el icono y el texto */
+}
 
 @media screen and (min-width: 768px) {
   .virtual_school_container{
