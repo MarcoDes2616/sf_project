@@ -45,11 +45,9 @@ const Courses = ({ value, index }) => {
       headerName: "MINIATURA",
       field: "imageUrl",
       dataRender: (value) => (
-        <img
-          src={value}
-          alt="Poster"
-          style={{ width: "80px", height: "auto" }}
-        />
+        value ? (
+          <img src={value} alt="miniatura" style={{ width: "80px", height: "auto" }} />
+        ) : null
       ),
     },
     {

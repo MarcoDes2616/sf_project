@@ -28,7 +28,9 @@ const Posts = ({ value, index }) => {
       field: "imageUrl",
       headerName: "IMAGEN",
       dataRender: (value) => (
-        <img src={value} alt="Post" style={{ width: "80px", height: "auto" }} />
+        value ? (
+          <img src={value} alt="post" style={{ width: "80px", height: "auto" }} />
+        ) : null
       ),
     },
     {

@@ -29,6 +29,10 @@ const CreateVideo = ({ open, onClose, onSubmit, selected }) => {
 
   const handleInputChange = (e) => {
     const { name, value, files } = e.target;
+    if (files && !files[0].type.startsWith('image/')) {
+      alert("Por favor, selecciona un archivo de tipo imagen.");
+      return;
+    }
     setFormData((prevData) => ({
       ...prevData,
       [name]: files ? files[0] : value,
