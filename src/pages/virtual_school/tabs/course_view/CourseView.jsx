@@ -81,36 +81,6 @@ const CourseView = () => {
                       width="100%"
                       height="100%"
                     />
-                    <div
-                      className="overlay-blocker"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                      }}
-                    >
-                      
-                    </div>
-                    <div
-                      className="overlay-blocker2"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                      }}
-                    >
-                      {!showImageOverlay && 
-                      <button
-                        className="pause-button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          videoPlayerRef.current &&
-                            videoPlayerRef.current
-                              .getInternalPlayer()
-                              .pauseVideo();
-                        }}
-                      >
-                        ⏸ Pause
-                      </button>}
-                    </div>
                   </div>
                 </>
               )}
