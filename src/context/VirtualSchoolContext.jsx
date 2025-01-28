@@ -61,7 +61,7 @@ export const VirtualSchoolProvider = ({ children }) => {
   
   const getAllPosts = async (tagId) => {
     setLoading(true)
-     await axiosInstance.get(path.post)
+     await axiosInstance.get(path.post + `${tagId ? "?tagId="+tagId : ""}`)
     .then(res => setAllPosts(res.data))
     .finally(() => setLoading(false))
   };
