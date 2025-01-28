@@ -51,7 +51,8 @@ export const VirtualSchoolProvider = ({ children }) => {
     }
     if (module === "my_courses") {
       await getContain()
-      await getSignalPosts(6)
+      let {data} = await getSignalPosts(6)
+      setAllPosts(data)
     }
   }
 
