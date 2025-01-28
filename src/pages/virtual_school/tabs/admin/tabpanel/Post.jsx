@@ -5,7 +5,7 @@ import GenericTable from "../../../../../components/generals/GenericTable";
 import { helpUtil } from "../../../../../helpers/helpUtil";
 
 const Posts = ({ value, index }) => {
-  const { allPosts, setModule, deleteContain, setSelected, setModal } =
+  const { allPosts, setModule, deleteContain, setSelected, setModal, dataPagination, getAllPosts } =
     useContext(VirtualSchoolContext);
 
   useEffect(() => {
@@ -60,6 +60,8 @@ const Posts = ({ value, index }) => {
     columns,
     handleDelete,
     handleEdit,
+    dataPagination,
+    onPageChange: getAllPosts
   };
 
   return (
