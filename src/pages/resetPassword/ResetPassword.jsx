@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { TextField, Button, Typography, Box, List, ListItem } from "@mui/material";
+import { TextField, Button, Typography, Box, List, ListItem, InputAdornment, IconButton} from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import Swal from "sweetalert2";
 import MainContext from "../../context/MainContext";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
@@ -28,6 +29,7 @@ const ResetPassword = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { fetchUpdatePass } = useContext(MainContext);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -99,6 +101,10 @@ const ResetPassword = () => {
     number: /\d/.test(data.password)
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div className="reset_password_container full-vh full-vw flex jf-c al-c">
       <Box
@@ -123,11 +129,27 @@ const ResetPassword = () => {
           <TextField
             label="Contraseña"
             variant="outlined"
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="password"
             value={data.password}
             onChange={handleChange}
             fullWidth
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">***</InputAdornment>
+              ),
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={togglePasswordVisibility}
+                    edge="end"
+                    aria-label="toggle password visibility"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
           
           <List sx={{ mt: -1, mb: -1 }}>
@@ -148,7 +170,7 @@ const ResetPassword = () => {
           <TextField
             label="Confirmar Contraseña"
             variant="outlined"
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="confirmPassword"
             value={data.confirmPassword}
             onChange={handleChange}
