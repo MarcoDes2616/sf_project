@@ -53,7 +53,7 @@ const MainContextProvider = ({ children }) => {
 
   const menuOptions = [
     { path: "/", name: "HOME" },
-    { path: "/about_us", name: "NOSOTROS" },
+    // { path: "/about_us", name: "NOSOTROS" },
     { path: "/blog", name: "BLOG" },
   ];
 
