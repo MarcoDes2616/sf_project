@@ -1,10 +1,17 @@
-import React from "react";
-import { TextField, InputAdornment, Button } from "@mui/material";
+import React, { useState } from "react";
+import { TextField, InputAdornment, Button, IconButton } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const Login = ({ formData, setFormData, state, setState, errors }) => {
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -37,7 +44,7 @@ const Login = ({ formData, setFormData, state, setState, errors }) => {
         <>
           <TextField
             label="Contraseña"
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="password"
             variant="outlined"
             value={formData.password}
@@ -47,6 +54,17 @@ const Login = ({ formData, setFormData, state, setState, errors }) => {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">***</InputAdornment>
+              ),
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={togglePasswordVisibility}
+                    edge="end"
+                    aria-label="toggle password visibility"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
               ),
             }}
             fullWidth
