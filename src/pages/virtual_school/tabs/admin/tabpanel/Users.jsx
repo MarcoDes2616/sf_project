@@ -4,13 +4,21 @@ import VirtualSchoolContext from "../../../../../context/VirtualSchoolContext";
 import GenericTable from "../../../../../components/generals/GenericTable";
 
 const Users = ({ value, index }) => {
-  const [firebaseUsers, setFirebaseusers] = useState([])
-  const { allUser, setModule, deleteContain, setSelected, setModal, getFirebaseUsers } =
-    useContext(VirtualSchoolContext);
+  const [firebaseUsers, setFirebaseusers] = useState([]);
+  const {
+    allUser,
+    setModule,
+    deleteContain,
+    setSelected,
+    setModal,
+    getFirebaseUsers,
+    dataPagination,
+    getAllUsers
+  } = useContext(VirtualSchoolContext);
 
   useEffect(() => {
     setModule("users");
-    fetchFirebaseUsers()
+    fetchFirebaseUsers();
   }, []);
 
   const handleEdit = (data) => {
@@ -22,14 +30,12 @@ const Users = ({ value, index }) => {
     deleteContain(id);
   };
 
-  const fetchFirebaseUsers = async() => {
+  const fetchFirebaseUsers = async () => {
     try {
-      const resul = await getFirebaseUsers()
-      setFirebaseusers(resul.data.usuarios)
-    } catch (error) {
-      
-    }
-  }
+      const resul = await getFirebaseUsers();
+      setFirebaseusers(resul.data.usuarios);
+    } catch (error) {}
+  };
 
   const columns = [
     { field: "id", headerName: "ID" },
@@ -59,30 +65,44 @@ const Users = ({ value, index }) => {
     columns,
     handleDelete,
     handleEdit,
+    dataPagination,
+    onPageChange: getAllUsers,
   };
-  
+
   const firebaseColumns = [
     { field: "id", headerName: "ID" },
     { field: "name", headerName: "NOMBRE" },
     { field: "email", headerName: "EMAIL" },
     { field: "phone", headerName: "TELEFONO" },
-    { field: "terms", headerName: "T&C", dataRender: (value) => value? "Acepta" : "Rechaza", },
-    { field: "createdAt", dataRender: (value) => value.seconds, headerName: "REGISTRO" },
-  ]
+    {
+      field: "terms",
+      headerName: "T&C",
+      dataRender: (value) => (value ? "Acepta" : "Rechaza"),
+    },
+    {
+      field: "createdAt",
+      dataRender: (value) => value.seconds,
+      headerName: "REGISTRO",
+    },
+  ];
 
   const propsToTableFirebase = {
     data: firebaseUsers,
     columns: firebaseColumns,
     handleDelete,
     handleEdit,
-    actions: false
+    actions: false,
   };
 
   return (
     <TabPanel value={value} index={index}>
       <GenericTable {...propsToTable} />
-        <br /><br /><br />
-      <h3>Registros de firebase</h3><br /><br />
+      <br />
+      <br />
+      <br />
+      <h3>Registros de firebase</h3>
+      <br />
+      <br />
       <GenericTable {...propsToTableFirebase} />
     </TabPanel>
   );

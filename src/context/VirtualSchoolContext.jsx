@@ -17,8 +17,9 @@ export const VirtualSchoolProvider = ({ children }) => {
   const [selected, setSelected] = useState("")
   const [modal, setModal] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [dataPagination, setDataPagination] = useState({})
 
-  const {getAllPosts: getSignalPosts} = useContext(MainContext)
+  const {getAllPosts: getSignalPosts, handleScrollToTop} = useContext(MainContext)
 
   const path = {
     users: "/users",
@@ -56,17 +57,26 @@ export const VirtualSchoolProvider = ({ children }) => {
     }
   }
 
-  const getAllUsers = async () => {
+  const getAllUsers = async (page = 1) => {
     setLoading(true)
-    return await axiosInstance.get(path.users)
-    .then(res => setAllUser(res.data))
+    return await axiosInstance.get(path.users + `${page ? "?page="+page : ""}`)
+    .then(res => {
+      const {results, ...rest} = res.data
+      setAllUser(results)
+      setDataPagination(rest)
+      handleScrollToTop()
+    })
     .finally(() => setLoading(false))
   };
   
-  const getAllPosts = async (tagId) => {
+  const getAllPosts = async (page = 1) => {
     setLoading(true)
-     await axiosInstance.get(path.post + `${tagId ? "?tagId="+tagId : ""}`)
-    .then(res => setAllPosts(res.data))
+    await axiosInstance.get(path.post + `${page ? "?page="+page : ""}`)
+    .then(res => {
+      const {results, ...rest} = res.data
+      setAllPosts(results)
+      setDataPagination(rest)
+    })
     .finally(() => setLoading(false))
   };
 
@@ -260,7 +270,8 @@ export const VirtualSchoolProvider = ({ children }) => {
     selected, 
     setSelected,
     createUser,
-    getFirebaseUsers
+    getFirebaseUsers,
+    dataPagination
   };
 
   return (
