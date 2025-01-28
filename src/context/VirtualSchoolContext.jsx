@@ -1,7 +1,8 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import axiosInstance from "../services/axios";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
+import MainContext from "./MainContext";
 
 const VirtualSchoolContext = createContext();
 
@@ -16,6 +17,8 @@ export const VirtualSchoolProvider = ({ children }) => {
   const [selected, setSelected] = useState("")
   const [modal, setModal] = useState(false)
   const [loading, setLoading] = useState(false)
+
+  const {getAllPosts: getSignalPosts} = useContext(MainContext)
 
   const path = {
     users: "/users",
@@ -48,7 +51,7 @@ export const VirtualSchoolProvider = ({ children }) => {
     }
     if (module === "my_courses") {
       await getContain()
-      await getAllPosts(6)
+      await getSignalPosts(6)
     }
   }
 
