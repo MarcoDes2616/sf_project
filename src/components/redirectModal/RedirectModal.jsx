@@ -21,7 +21,7 @@ const RedirectModal = () => {
   
   return (
     <Curtain open={openRedirectModal}>
-      <div className="redirect_modal_info jf-c flex row wrap">
+      <div className="redirect_modal_info jf-c flex row">
         <div className="redirect_section redirect1 flex column al-c jf-c">
             <img src={logoV} alt="logo trading sin fronteras" />
             <p className="x-big" style={{marginBottom: "20px"}}>Continuar en la Web</p>

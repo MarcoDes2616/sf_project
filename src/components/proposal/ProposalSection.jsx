@@ -16,7 +16,7 @@ const ProposalSection = () => {
           </div>
           <div className="flex proposal_description2">
             <div className="flex row proposal_price">
-              <h3 className="bold">120$</h3>
+              <h3 className="bold">250$</h3>
               <p className="big">Único pago por el curso Indice sintético</p>
             </div>
             <PrimaryBtn scroll={700}>Inscripciones Abiertas</PrimaryBtn>
